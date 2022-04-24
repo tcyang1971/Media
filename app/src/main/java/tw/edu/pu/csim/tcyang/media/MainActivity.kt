@@ -2,14 +2,20 @@ package tw.edu.pu.csim.tcyang.media
 
 import android.content.pm.ActivityInfo
 import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.MediaController
+import android.widget.VideoView
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var mper: MediaPlayer
+
+    lateinit var vdv: VideoView
+    lateinit var vidControl: MediaController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         //設定螢幕水平顯示
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+
+        vdv = findViewById<VideoView>(R.id.vdv)
+        vidControl = MediaController(this)
+        vdv.setMediaController(vidControl)
     }
 
     fun StartPlay(v: View){
@@ -35,6 +45,11 @@ class MainActivity : AppCompatActivity() {
             R.id.btn2 -> {
                 mper = MediaPlayer.create(this, R.raw.fly)
                 mper.start()
+            }
+
+            R.id.btn3 -> {
+                vdv.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.love))
+                vdv.start()
             }
         }
     }
