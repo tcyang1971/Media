@@ -38,4 +38,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if(mper != null) {
+            mper.release()
+        }
+    }
+
 }
