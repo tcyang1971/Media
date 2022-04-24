@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.btn3 -> {
-                vdv.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.love))
+                //vdv.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.love))
+                vdv.setVideoPath("http://www.ebookfrenzy.com/android_book/movie.mp4")
                 vdv.start()
             }
         }
