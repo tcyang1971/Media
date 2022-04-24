@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun StartPlay(v: View){
+        mper.reset()
         when (v.id) {
             R.id.btn1 -> {
                 mper = MediaPlayer.create(this, R.raw.tcyang)
