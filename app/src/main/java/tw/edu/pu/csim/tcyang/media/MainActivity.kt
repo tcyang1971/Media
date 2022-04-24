@@ -46,4 +46,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if(mper != null && mper.isPlaying()){
+            mper.pause()
+        }
+        else{
+            mper.reset()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(mper != null){
+            mper.start()
+        }
+    }
+
 }
