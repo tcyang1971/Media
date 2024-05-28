@@ -1,13 +1,16 @@
 package tw.edu.pu.csim.tcyang.media
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -18,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import tw.edu.pu.csim.tcyang.media.ui.theme.MediaTheme
@@ -48,27 +52,54 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         R.drawable.animal6, R.drawable.animal7,
         R.drawable.animal8, R.drawable.animal9)
     var AnimalsName = arrayListOf("鴨子","企鵝","青蛙","貓頭鷹","海豚", "牛", "無尾熊", "獅子", "狐狸", "小雞")
+    val context = LocalContext.current
+    var mper = MediaPlayer()
 
-    LazyRow {
+    Column {
+        Row {
+            Button(onClick = {
+                mper.reset()
+                mper = MediaPlayer.create(context, R.raw.tcyang)
+                mper.start()
+            }) {
+                Text(text = "歡迎修課")
+            }
 
-        items(51) { index ->
-            Text(text = AnimalsName[index % 10])
-            Image(
-                painter = painterResource(id = Animals[index % 10]),
-                contentDescription = "可愛動物圖片",
-                modifier = Modifier.fillParentMaxWidth(1.0f))
+            Button(onClick = {
+                mper.reset()
+                mper = MediaPlayer.create(context, R.raw.fly)
+                mper.start()
+            }) {
+                Text(text = "展翅飛翔")
+            }
+
+            Button(onClick = {
+            }) {
+                Text(text = "手碟音樂")
+            }
         }
 
-        item {
-            TextField(value = msg,
-                onValueChange ={
-                    msg = it
-                }
-            )
+        LazyRow {
 
+            items(51) { index ->
+                Text(text = AnimalsName[index % 10])
+                Image(
+                    painter = painterResource(id = Animals[index % 10]),
+                    contentDescription = "可愛動物圖片",
+                    modifier = Modifier.fillParentMaxWidth(1.0f)
+                )
+            }
+
+            item {
+                TextField(value = msg,
+                    onValueChange = {
+                        msg = it
+                    }
+                )
+
+            }
         }
     }
-
 }
 
 @Preview(showBackground = true)
