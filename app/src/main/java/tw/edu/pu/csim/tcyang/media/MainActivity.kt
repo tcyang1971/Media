@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,11 +33,28 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column {
-        for (i in 0..50) {
-            Text(text = i.toString())
+    LazyColumn {
+        // Add a single item
+        item {
+            Text(text = "Header")
+        }
+
+        // Add 3 items
+        items(3) { index ->
+            Text(text = "First List items : $index")
+        }
+
+        // Add 2 items
+        items(2) { index ->
+            Text(text = "Second List Items: $index")
+        }
+
+        // Add another single item
+        item {
+            Text(text = "Footer")
         }
     }
+
 }
 
 @Preview(showBackground = true)
