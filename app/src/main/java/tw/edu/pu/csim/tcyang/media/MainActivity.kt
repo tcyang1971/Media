@@ -9,7 +9,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import tw.edu.pu.csim.tcyang.media.ui.theme.MediaTheme
@@ -33,25 +38,21 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    var msg by remember { mutableStateOf("行動應用軟體開發")}
+
     LazyColumn {
-        // Add a single item
+
+        items(51) { index ->
+            Text(text = index.toString())
+        }
+
         item {
-            Text(text = "Header")
-        }
+            TextField(value = msg,
+                onValueChange ={
+                    msg = it
+                }
+            )
 
-        // Add 3 items
-        items(3) { index ->
-            Text(text = "First List items : $index")
-        }
-
-        // Add 2 items
-        items(2) { index ->
-            Text(text = "Second List Items: $index")
-        }
-
-        // Add another single item
-        item {
-            Text(text = "Footer")
         }
     }
 
